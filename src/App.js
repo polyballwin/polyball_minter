@@ -4,7 +4,7 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-import i1 from "./assets/images/logo512.png";
+import i1 from "./assets/images/exampleTickets_multiple.gif";
 
 export const StyledButton = styled.button`
   padding: 10px;
@@ -39,11 +39,12 @@ export const ResponsiveWrapper = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  margin: -60px 0;
   @media (min-width: 767px) {
-    width: 350px;
-    height: 350px;
+    width: 250px;
+    height: 250px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -96,7 +97,7 @@ function App() {
 
   return (
     <s.Screen style={{ backgroundColor: "var(--page)" }}>
-      <s.Container flex={1} ai={"center"} style={{ padding: 24 }}>
+      <s.Container flex={1} ai={"center"} style={{ padding: 5 }}>
         <s.TextTitle
           style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}
         >
@@ -105,7 +106,7 @@ function App() {
         <s.SpacerMedium />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }}>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={i1} />
+            <StyledImg alt={"polyball"} src={i1} />
             <s.SpacerMedium />
             <s.TextTitle
               style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}
