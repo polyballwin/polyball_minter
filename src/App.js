@@ -4,7 +4,7 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-import i1 from "./assets/images/1 A 1.gif";
+import i1 from "./assets/images/logo512.png";
 
 export const StyledButton = styled.button`
   padding: 10px;
@@ -53,7 +53,7 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
-  const [feedback, setFeedback] = useState("Maybe it's your lucky day.");
+  const [feedback, setFeedback] = useState("It's your lucky day!");
   const [claimingNft, setClaimingNft] = useState(false);
   const contract_addr = "0x5c103d2c897C7533164b103768Bc06Ecf98bDc8E"
   const claimNFTs = (_amount) => {
@@ -95,7 +95,7 @@ function App() {
   }, [blockchain.account]);
 
   return (
-    <s.Screen style={{ backgroundColor: "var(--black)" }}>
+    <s.Screen style={{ backgroundColor: "var(--page)" }}>
       <s.Container flex={1} ai={"center"} style={{ padding: 24 }}>
         <s.TextTitle
           style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}
@@ -118,7 +118,7 @@ function App() {
             flex={1}
             jc={"center"}
             ai={"center"}
-            style={{ backgroundColor: "#383838", padding: 24 }}
+            style={{ backgroundColor: "var(--rightBox)", padding: 24, borderRadius: 50 }}
           >
             {Number(data.totalSupply) == 70070 ? (
               <>
@@ -154,7 +154,7 @@ function App() {
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
                     <s.TextDescription style={{ textAlign: "center" }}>
-                      Connect to the Polygon network
+                      Connect to Polygon
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledButton
