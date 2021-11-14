@@ -8,8 +8,7 @@ import i1 from "./assets/images/exampleTickets_multiple.gif";
 
 export const StyledButton = styled.button`
   padding: 10px;
-  border-radius: 50px;
-  border: none;
+  border-radius: 20px;
   background-color: #ffffff;
   padding: 10px;
   font-weight: bold;
@@ -99,7 +98,7 @@ function App() {
     <s.Screen style={{ backgroundColor: "var(--page)" }}>
       <s.Container flex={1} ai={"center"} style={{ padding: 5 }}>
         <s.TextTitle
-          style={{ textAlign: "center", fontSize: 28, fontWeight: "bold" }}
+          style={{ textAlign: "center", fontSize: 28, fontWeight: "bold", marginTop: "20px"}}
         >
           Mint polyball tickets
         </s.TextTitle>
@@ -140,13 +139,12 @@ function App() {
             ) : (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
-                  1 ticket costs 0.05 MATIC.
+                  Each ticket costs 0.05 MATIC.
                 </s.TextTitle>
-                <s.SpacerXSmall />
+                <s.SpacerSmall />
                 <s.TextDescription style={{ textAlign: "center" }}>
                   Excluding gas fee.
                 </s.TextDescription>
-                <s.SpacerSmall />
                 <s.TextDescription style={{ textAlign: "center" }}>
                   {feedback}
                 </s.TextDescription>
@@ -154,10 +152,6 @@ function App() {
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
-                    <s.TextDescription style={{ textAlign: "center" }}>
-                      Connect to Polygon
-                    </s.TextDescription>
-                    <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
@@ -195,16 +189,15 @@ function App() {
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerSmall />
-        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
+        <s.Container jc={"center"} ai={"center"} style={{ width: "70%", margin: "0 auto 20px"}}>
           <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
-            Please make sure you are connected to the right network (Polygon
-            Mainnet) and the correct address. Please note: Once you make the
-            purchase, you cannot undo this action.
+            You cannot undo this action.
           </s.TextDescription>
-          <s.SpacerSmall />
           <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
-            We have set the gas limit to 997500 for the contract to successfully
-            mint your NFT. We recommend that you don't change the gas limit.
+            Please check your network (Polygon Mainnet) and the correct address.
+          </s.TextDescription>
+          <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
+            Recommended gas limit to mint your tickets: 997500.
           </s.TextDescription>
         </s.Container>
       </s.Container>
