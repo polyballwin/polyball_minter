@@ -49,6 +49,26 @@ export const StyledImg = styled.img`
   transition: height 0.5s;
 `;
 
+export const StyledInput = styled.input`
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: #ffffff;
+  padding: 10px;
+  font-weight: bold;
+  color: #000000;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -moz-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+`;
+
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
@@ -65,7 +85,7 @@ function App() {
     blockchain.smartContract.methods
       .mint(blockchain.account, _amount)
       .send({
-        gasLimit: "997500", // FOR 7 ITEMS
+        gasLimit: (142500 * _amount).toString(), // adaptive gas limit
         to: contract_addr,
         from: blockchain.account,
         value: blockchain.web3.utils.toWei((0.05 * _amount).toString(), "ether"),
@@ -90,6 +110,15 @@ function App() {
     }
   };
 
+  var get_input = () => {
+    var x = document.getElementById("input").value;
+    if (x > 182){
+      alert("Mint number should be less than 182!")
+      return 0
+    }
+    return x
+  };
+
   useEffect(() => {
     getData();
   }, [blockchain.account]);
@@ -102,18 +131,7 @@ function App() {
         >
           Mint polyball tickets
         </s.TextTitle>
-        <s.SpacerMedium />
-        <ResponsiveWrapper flex={1} style={{ padding: 24 }}>
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"polyball"} src={i1} />
-            <s.SpacerMedium />
-            <s.TextTitle
-              style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}
-            >
-              {data.totalSupply}/70070
-            </s.TextTitle>
-          </s.Container>
-          <s.SpacerMedium />
+        <ResponsiveWrapper flex={1} style={{ padding: 12 }}>
           <s.Container
             flex={1}
             jc={"center"}
@@ -152,7 +170,11 @@ function App() {
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
-                    <StyledButton
+                    {/* CONNECT BUTTON */}
+                    <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
+                      Coming soon
+                    </s.TextDescription>
+                    {/* <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(connect());
@@ -160,7 +182,8 @@ function App() {
                       }}
                     >
                       CONNECT
-                    </StyledButton>
+                    </StyledButton> */}
+
                     {blockchain.errorMsg !== "" ? (
                       <>
                         <s.SpacerSmall />
@@ -172,20 +195,33 @@ function App() {
                   </s.Container>
                 ) : (
                   <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                    <StyledInput placeholder="Mint number" id = "input">
+                    </StyledInput>
                     <StyledButton
                       disabled={claimingNft ? 1 : 0}
                       onClick={(e) => {
+                        var num = get_input();
                         e.preventDefault();
-                        claimNFTs(1);
+                        claimNFTs(num);
                         getData();
                       }}
                     >
-                      {claimingNft ? "BUSY" : "BUY 7"}
+                      {claimingNft ? "BUSY" : "BUY"}
                     </StyledButton>
                   </s.Container>
                 )}
               </>
             )}
+          </s.Container>
+          <s.SpacerMedium />
+          <s.Container flex={1} jc={"center"} ai={"center"}>
+            <StyledImg alt={"polyball"} src={i1} />
+            <s.SpacerMedium />
+            <s.TextTitle
+              style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}
+            >
+              {data.totalSupply}/70070
+            </s.TextTitle>
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerSmall />
@@ -197,7 +233,7 @@ function App() {
             Please check your network (Polygon Mainnet) and the correct address.
           </s.TextDescription>
           <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
-            Recommended gas limit to mint your tickets: 997500.
+            Recommended gas limit to mint your tickets: 142500 each ticket.
           </s.TextDescription>
         </s.Container>
       </s.Container>
