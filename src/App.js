@@ -40,7 +40,7 @@ export const ResponsiveWrapper = styled.div`
 export const StyledImg = styled.img`
   width: 150px;
   height: 150px;
-  margin: -60px 0;
+  margin: -40px 0 -50px;
   @media (min-width: 767px) {
     width: 250px;
     height: 250px;
@@ -73,7 +73,7 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
-  const [feedback, setFeedback] = useState("It's your lucky day!");
+  const [feedback, setFeedback] = useState("Excluding gas fee");
   const [claimingNft, setClaimingNft] = useState(false);
   const contract_addr = "0x5c103d2c897C7533164b103768Bc06Ecf98bDc8E"
   const claimNFTs = (_amount) => {
@@ -129,14 +129,14 @@ function App() {
         <s.TextTitle
           style={{ textAlign: "center", fontSize: 28, fontWeight: "bold", marginTop: "20px"}}
         >
-          Mint polyball tickets
+          Polyball tickets minter
         </s.TextTitle>
         <ResponsiveWrapper flex={1} style={{ padding: 12 }}>
           <s.Container
             flex={1}
             jc={"center"}
             ai={"center"}
-            style={{ backgroundColor: "var(--rightBox)", padding: 24, borderRadius: 50 }}
+            style={{ backgroundColor: "var(--rightBox)", borderRadius: 50 }}
           >
             {Number(data.totalSupply) == 70070 ? (
               <>
@@ -157,12 +157,9 @@ function App() {
             ) : (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
-                  Each ticket costs 0.05 MATIC.
+                0.05 ETH each ticket
                 </s.TextTitle>
                 <s.SpacerSmall />
-                <s.TextDescription style={{ textAlign: "center" }}>
-                  Excluding gas fee.
-                </s.TextDescription>
                 <s.TextDescription style={{ textAlign: "center" }}>
                   {feedback}
                 </s.TextDescription>
@@ -171,7 +168,7 @@ function App() {
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
                     {/* CONNECT BUTTON */}
-                    <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
+                    <s.TextDescription style={{ textAlign: "center", fontSize: 24 }}>
                       Coming soon
                     </s.TextDescription>
                     {/* <StyledButton
@@ -224,17 +221,13 @@ function App() {
             </s.TextTitle>
           </s.Container>
         </ResponsiveWrapper>
-        <s.SpacerSmall />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%", margin: "0 auto 20px"}}>
           <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
-            You cannot undo this action.
+          You cannot undo this action. Please check your network (Polygon Mainnet) and the correct address.
           </s.TextDescription>
-          <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
-            Please check your network (Polygon Mainnet) and the correct address.
-          </s.TextDescription>
-          <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
+          {/* <s.TextDescription style={{ textAlign: "center", fontSize: 9 }}>
             Recommended gas limit to mint your tickets: 142500 each ticket.
-          </s.TextDescription>
+          </s.TextDescription> */}
         </s.Container>
       </s.Container>
     </s.Screen>
