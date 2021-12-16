@@ -103,6 +103,12 @@ section {
 body {
   line-height: 1;
   background-color: #000;
+  background-image: url(../assets/images/bg_minter.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
 }
 ol,
 ul {
