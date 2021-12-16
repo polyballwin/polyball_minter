@@ -4,15 +4,15 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-import i1 from "./assets/images/exampleTickets_multiple.gif";
+import i1 from "./assets/images/polyballTickt.gif";
 
 export const StyledButton = styled.button`
   padding: 10px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: #000;
   padding: 10px;
   font-weight: bold;
-  color: #000000;
+  color: #fff;
   width: 100px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -38,12 +38,11 @@ export const ResponsiveWrapper = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  width: 150px;
-  height: 150px;
-  margin: -40px 0 -50px;
+  width: 100%;
+  margin: -60px 0 -30px;
   @media (min-width: 767px) {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    margin: 0;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -53,10 +52,10 @@ export const StyledInput = styled.input`
   padding: 10px;
   border-radius: 50px;
   border: none;
-  background-color: #ffffff;
+  background-color: #000;
   padding: 10px;
   font-weight: bold;
-  color: #000000;
+  color: #fff;
   width: 100px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -88,7 +87,7 @@ function App() {
         gasLimit: (142500 * _amount).toString(), // adaptive gas limit
         to: contract_addr,
         from: blockchain.account,
-        value: blockchain.web3.utils.toWei((0.05 * _amount).toString(), "ether"),
+        value: blockchain.web3.utils.toWei((0.066 * _amount).toString(), "ether"),
       })
       .once("error", (err) => {
         console.log(err);
@@ -97,7 +96,7 @@ function App() {
       })
       .then((receipt) => {
         setFeedback(
-          "WOW, you now own Polyball! go visit Opensea.io to view it."
+          "WOW, you now own Polyball! Visit Opensea.io to view it."
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -112,8 +111,8 @@ function App() {
 
   var get_input = () => {
     var x = document.getElementById("input").value;
-    if (x > 182){
-      alert("Mint number should be less than 182!")
+    if (x > 35){
+      alert("Mint number should be less than or equal to 35!")
       return 0
     }
     return x
@@ -138,7 +137,7 @@ function App() {
             ai={"center"}
             style={{ backgroundColor: "var(--rightBox)", borderRadius: 50 }}
           >
-            {Number(data.totalSupply) == 70070 ? (
+            {Number(data.totalSupply) == 10010 ? (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
                   The sale has ended.
@@ -157,7 +156,7 @@ function App() {
             ) : (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
-                0.05 ETH each ticket
+                0.066 ETH each ticket
                 </s.TextTitle>
                 <s.SpacerSmall />
                 <s.TextDescription style={{ textAlign: "center" }}>
@@ -215,9 +214,9 @@ function App() {
             <StyledImg alt={"polyball"} src={i1} />
             <s.SpacerMedium />
             <s.TextTitle
-              style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}
+              style={{ textAlign: "center", fontSize: 30, fontWeight: "bold" }}
             >
-              {data.totalSupply}/70070
+              {data.totalSupply}/10010
             </s.TextTitle>
           </s.Container>
         </ResponsiveWrapper>
