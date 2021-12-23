@@ -38,10 +38,10 @@ export const ResponsiveWrapper = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  width: 100%;
+  width: 70%;
   margin: -60px 0 -30px;
   @media (min-width: 767px) {
-    width: 100%;
+    width: 80%;
     margin: 0;
   }
   transition: width 0.5s;
